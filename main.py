@@ -24,7 +24,7 @@ soundDetectModule = None
 faceDetectModule = None
 
 # Network settings of the robot
-NAO_IP = "192.168.0.100"         # the current IP address of the NAO
+NAO_IP = "192.168.0.109"         # the current IP address of the NAO
 NAO_port = 9559
 
 # This is the robot control. It also interacts with the user interface GUI (userInterface.py)
@@ -73,8 +73,8 @@ def main():
             resp = requests.post("http://localhost:5000/predict", data=human_input)
             
             print(resp.text)
-            speakModule.say(str(resp.text))  # react to the transcript 
-                             
+            speakModule.say(str(resp.text)) # react to the transcript 
+            if 
  	    
     except KeyboardInterrupt:
     	
