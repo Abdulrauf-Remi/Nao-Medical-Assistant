@@ -1,9 +1,9 @@
 
 from naoqi import ALProxy
 import time
+import os
 
-
-robot_IP = "192.168.0.100"
+robot_IP = "192.168.0.109"
 tts = audio = record = aup = None 
 
 
@@ -25,3 +25,6 @@ def record_NAO(robot_IP, robot_PORT=9559):
 	record.stopMicrophonesRecording()
 	print ('record over')
 	tts.say("record over")
+
+m = audio.openAudioInputs()
+print(m)
