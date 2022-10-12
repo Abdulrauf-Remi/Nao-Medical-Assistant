@@ -24,7 +24,7 @@ soundDetectModule = None
 faceDetectModule = None
 
 # Network settings of the robot
-NAO_IP = "192.168.0.109"         # the current IP address of the NAO
+NAO_IP = "192.168.0.101"         # the current IP address of the NAO
 NAO_port = 9559
 
 # This is the robot control. It also interacts with the user interface GUI (userInterface.py)
@@ -56,7 +56,9 @@ def main():
     # set face tracking (only work when NAO Auto-life enabled)
     faceProxy = ALProxy("ALFaceDetection")
     faceProxy.enableTracking(True)
-    
+
+    fever_follow = "Do you have any other symptoms such as abdominal pain, rashes or faint pink spots, usually on your chest or stomach, cough, diarrhea or constipation"
+    typhoid_true = "Then you have typhoid fever"
     
     # LOOP
     try:
@@ -74,7 +76,37 @@ def main():
             
             print(resp.text)
             speakModule.say(str(resp.text)) # react to the transcript 
-            if 
+            if "fever" in str(resp.text):
+                print(fever_follow)
+                time.sleep(1)
+                speakModule.say(fever_follow)
+                feverfans = speech_to_text()
+                if "yes" in feverfans:
+                    print(typhoid_true)
+                    time.sleep(1)
+                    speakModule.say(typhoid_true)
+                    sym_dur = "how long have you been exprencing those symptoms"
+                    print(sym_dur)
+                    time.sleep(2)
+                    speakModule.say(sym_dur)
+                    sym_dur_res = speech_to_text()
+                    ty_dur = requests.post("http://localhost:5000/predict", data=sym_dur_res)
+                    if "early stage" in str(ty_dur.text):
+                        print("the pharmacist will provide you with antibiotics which may include Ciprofloxacin, Ceftriaxone, Azithromycin or Carbapenems")
+                        speakModule.say("the pharmacist will provide you with antibiotics which may include Ciprofloxacin, Ceftriaxone, Azithromycin or Carbapenems.")
+                        time.sleep(2)
+                        speakModule.say("Your symptoms should begin to improve within 2 to 3 days of taking antibiotics. But it's very important you finish the course\
+                             to ensure the bacteria are completely removed from your body.")
+                    else:
+                        print("I will suggest you go to the laboratory for your samples be tested to determine which strain\
+                            you're infected with, so you can be treated with an appropriate antibiotic")
+                        speakModule.say("I will suggest you go to the laboratory for your samples be tested to determine which strain\
+                            you're infected with, so you can be treated with an appropriate antibiotic")
+                else:
+                    fever_ques = "medicine for fever"
+                    resp = requests.post("http://localhost:5000/predict", data=fever_ques)
+                    print(resp.text)
+                    speakModule.say(str(resp.text))
  	    
     except KeyboardInterrupt:
     	
