@@ -85,6 +85,8 @@ def main():
                     print(typhoid_true)
                     time.sleep(1)
                     speakModule.say(typhoid_true)
+                    time.sleep(2)
+                    speakModule.say("Typhoid fever is a bacterial infection that can spread throughout the body, affecting many organs. Without prompt treatment, it can cause serious complications and can be fatal.")
                     sym_dur = "how long have you been exprencing those symptoms"
                     print(sym_dur)
                     time.sleep(2)
@@ -97,16 +99,39 @@ def main():
                         time.sleep(2)
                         speakModule.say("Your symptoms should begin to improve within 2 to 3 days of taking antibiotics. But it's very important you finish the course\
                              to ensure the bacteria are completely removed from your body.")
+                        speakModule.say("Please take note of the follow preventions to avoid future typhoid infection")
+                        typ_ques = "preventions for typhoid"
+                        resp = requests.post("http://localhost:5000/predict", data=typ_ques)
+                        print(resp.text)
+                        speakModule.say(str(resp.text))
+                        time.sleep(2)
+                        speakModule.say("If you are unsure, its safest to drink bottled water or boil water before drinking")
                     else:
                         print("I will suggest you go to the laboratory for your samples be tested to determine which strain\
                             you're infected with, so you can be treated with an appropriate antibiotic")
                         speakModule.say("I will suggest you go to the laboratory for your samples be tested to determine which strain\
                             you're infected with, so you can be treated with an appropriate antibiotic")
+                        time.sleep(1)
+                        speakModule.say("Please, doctor Mensah will take over after your samples have been tested")
                 else:
+                    speakModule.say("A fever is a temporary rise in body temperature. It's one part of an overall response from the body's immune system. A fever is usually caused by an infection.")
                     fever_ques = "medicine for fever"
                     resp = requests.post("http://localhost:5000/predict", data=fever_ques)
                     print(resp.text)
                     speakModule.say(str(resp.text))
+
+                    fever_ques = "What to eat to avoid getting fever"
+                    resp = requests.post("http://localhost:5000/predict", data=fever_ques)
+                    print(resp.text)
+                    speakModule.say(str(resp.text))
+
+                    fever_ques = "any preventions for fever"
+                    resp = requests.post("http://localhost:5000/predict", data=fever_ques)
+                    print(resp.text)
+                    speakModule.say(str(resp.text))
+                    time.sleep(2)
+                    speakModule.say("Please go to the pharmacy for your medication")
+
  	    
     except KeyboardInterrupt:
     	

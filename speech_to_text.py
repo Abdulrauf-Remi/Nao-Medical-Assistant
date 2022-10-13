@@ -1,5 +1,8 @@
 import speech_recognition as sr
 import pyttsx3
+from naoqi import ALProxy
+robot_IP = "192.168.0.101"
+tts = ALProxy("ALTextToSpeech", robot_IP, 9559)
 
 r = sr.Recognizer()
 
@@ -30,4 +33,5 @@ def speech_to_text():
             print("Could not request results; {0}".format(e))
 
         except sr.UnknownValueError:
-            print("unkbown error occured")
+            print("Oops! Didn't catch that")
+            # tts.say("Oops! Didn't catch that")
