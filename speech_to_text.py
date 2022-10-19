@@ -1,7 +1,7 @@
 import speech_recognition as sr
 import pyttsx3
 from naoqi import ALProxy
-robot_IP = "192.168.0.101"
+robot_IP = "192.168.0.114"
 tts = ALProxy("ALTextToSpeech", robot_IP, 9559)
 
 r = sr.Recognizer()

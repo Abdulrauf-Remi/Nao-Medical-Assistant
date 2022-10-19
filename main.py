@@ -24,7 +24,7 @@ soundDetectModule = None
 faceDetectModule = None
 
 # Network settings of the robot
-NAO_IP = "192.168.0.101"         # the current IP address of the NAO
+NAO_IP = "192.168.0.114"         # the current IP address of the NAO
 NAO_port = 9559
 
 # This is the robot control. It also interacts with the user interface GUI (userInterface.py)
