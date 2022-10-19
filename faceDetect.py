@@ -34,7 +34,7 @@ class FaceDetectModule(ALModule):
         # Unsubscribe to the event when talking to avoid repetitions
         memory.unsubscribeToEvent("FaceDetected", self.name)
 
-        self.tts.say("Hello friend!")
+        self.tts.say("Hello, I am Enna!")
         time.sleep(1)
 
         # Subscribe again to the event

@@ -4,7 +4,7 @@ from os import path
 from audio_speechrecognition import record_NAO
 import wave
 #WAV_FILE = path.join(path.dirname(path.realpath(__file__)), "comeOn.wav")
-robot_IP = "192.168.0.109"
+robot_IP = "192.168.0.108"
 tts = audio = record = aup = None
 tts = ALProxy("ALTextToSpeech", robot_IP, 9559)
 def speech_recognition():
@@ -12,13 +12,13 @@ def speech_recognition():
         global speechRecWord_rec
         print("you can say now...")
         tts.say("you can say now...")
-        # record_NAO(robot_IP, robot_PORT=9559)
-        audio = ALProxy("ALAudioDevice", robot_IP, 9559)
-        # WAV_FILE = audio.loadFile("/home/nao/record.wav")
+        record_NAO(robot_IP, robot_PORT=9559)
+        # audio = ALProxy("ALAudioDevice", robot_IP, 9559)
+        WAV_FILE = "record.wav"
         r = sr.Recognizer()
         #m = sr.Microphone()
-        nao_mic = audio.openAudioInputs()
-        m = sr.AudioSource(nao_mic)
+        # nao_mic = audio.openAudioInputs()
+        m = sr.AudioFile(WAV_FILE)
         #print("A moment of silence, please...")
         with m as source:
             r.adjust_for_ambient_noise(source)

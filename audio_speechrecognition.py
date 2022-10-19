@@ -3,7 +3,7 @@ from naoqi import ALProxy
 import time
 import os
 
-robot_IP = "192.168.0.109"
+robot_IP = "192.168.0.108"
 tts = audio = record = aup = None 
 
 
@@ -20,11 +20,13 @@ def record_NAO(robot_IP, robot_PORT=9559):
 	print("start recording...")
 	tts.say("start recording...")
 	record_path = '/home/nao/record.wav'
-	record.startMicrophonesRecording(record_path, 'wav', 16000, (0,0,1,0))
+	record.startMicrophonesRecording(record_path, 'wav', 16000, (1,1,1,1))
 	time.sleep(3)
 	record.stopMicrophonesRecording()
 	print ('record over')
 	tts.say("record over")
 
-m = audio.openAudioInputs()
-print(m)
+	cmd = 'scp nao@192.168.0.108:/home/nao/record.wav C:/Users/abdul/Desktop/Nao Robot/nao_test/Nao-Medical-Assistant'
+	os.system(cmd)
+
+record_NAO(robot_IP, robot_PORT=9559)
