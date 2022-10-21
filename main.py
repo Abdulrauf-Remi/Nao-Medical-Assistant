@@ -2,12 +2,11 @@
 from naoqi import ALBroker, ALProxy
 import time
 import sys
-# import zmq
+
 
 # external Python files
 import speak
 import move
-import speechReco
 import soundDetect
 import faceDetect
 from speech_to_text import speech_to_text
@@ -24,7 +23,7 @@ soundDetectModule = None
 faceDetectModule = None
 
 # Network settings of the robot
-NAO_IP = "192.168.0.108"         # the current IP address of the NAO
+NAO_IP = "192.168.0.104"         # the current IP address of the NAO
 NAO_port = 9559
 
 # This is the robot control. It also interacts with the user interface GUI (userInterface.py)
